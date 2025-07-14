@@ -7,7 +7,11 @@ import { AuthProvider } from '@/contexts/auth-context'
 import { ProtectedRoute } from '@/components/protected-route'
 import { Layout } from '@/components/layout'
 
+// Import i18n
+import '@/lib/i18n'
+
 // Pages
+import { HomePage } from '@/pages/Home'
 import { LoginPage } from '@/pages/auth/login'
 import { RegisterPage } from '@/pages/auth/register'
 import { DashboardPage } from '@/pages/dashboard'
@@ -42,13 +46,14 @@ function App() {
           <Router>
             <div className="min-h-screen bg-background">
               <Routes>
-                {/* Auth Routes */}
+                {/* Public Routes */}
+                <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 
                 {/* Protected Routes */}
-                <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
-                  <Route index element={<Navigate to="/dashboard" replace />} />
+                <Route path="/app" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+                  <Route index element={<Navigate to="/app/dashboard" replace />} />
                   <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="import" element={<ImportPage />} />
                   <Route path="products" element={<ProductsPage />} />
@@ -64,6 +69,22 @@ function App() {
                   <Route path="settings" element={<SettingsPage />} />
                   <Route path="billing" element={<BillingPage />} />
                 </Route>
+
+                {/* Legacy redirects */}
+                <Route path="/dashboard" element={<Navigate to="/app/dashboard" replace />} />
+                <Route path="/import" element={<Navigate to="/app/import" replace />} />
+                <Route path="/products" element={<Navigate to="/app/products" replace />} />
+                <Route path="/tracking" element={<Navigate to="/app/tracking" replace />} />
+                <Route path="/winners" element={<Navigate to="/app/winners" replace />} />
+                <Route path="/seo" element={<Navigate to="/app/seo" replace />} />
+                <Route path="/blog" element={<Navigate to="/app/blog" replace />} />
+                <Route path="/crm" element={<Navigate to="/app/crm" replace />} />
+                <Route path="/marketplace" element={<Navigate to="/app/marketplace" replace />} />
+                <Route path="/reviews" element={<Navigate to="/app/reviews" replace />} />
+                <Route path="/marketing" element={<Navigate to="/app/marketing" replace />} />
+                <Route path="/analytics" element={<Navigate to="/app/analytics" replace />} />
+                <Route path="/settings" element={<Navigate to="/app/settings" replace />} />
+                <Route path="/billing" element={<Navigate to="/app/billing" replace />} />
               </Routes>
               <Toaster />
             </div>

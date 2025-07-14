@@ -26,62 +26,62 @@ import {
 const navigation = [
   {
     name: 'Dashboard',
-    href: '/dashboard',
+    href: '/app/dashboard',
     icon: LayoutDashboard,
   },
   {
     name: 'Import Produits',
-    href: '/import',
+    href: '/app/import',
     icon: Import,
   },
   {
     name: 'Mes Produits',
-    href: '/products',
+    href: '/app/products',
     icon: Package,
   },
   {
     name: 'Tracking',
-    href: '/tracking',
+    href: '/app/tracking',
     icon: TrendingUp,
   },
   {
     name: 'Produits Gagnants',
-    href: '/winners',
+    href: '/app/winners',
     icon: Zap,
   },
   {
     name: 'SEO IA',
-    href: '/seo',
+    href: '/app/seo',
     icon: Search,
   },
   {
     name: 'Blog IA',
-    href: '/blog',
+    href: '/app/blog',
     icon: FileText,
   },
   {
     name: 'CRM',
-    href: '/crm',
+    href: '/app/crm',
     icon: Users,
   },
   {
     name: 'Marketplace B2B',
-    href: '/marketplace',
+    href: '/app/marketplace',
     icon: Store,
   },
   {
     name: 'Reviews',
-    href: '/reviews',
+    href: '/app/reviews',
     icon: Star,
   },
   {
     name: 'Marketing',
-    href: '/marketing',
+    href: '/app/marketing',
     icon: Mail,
   },
   {
     name: 'Analytics',
-    href: '/analytics',
+    href: '/app/analytics',
     icon: BarChart3,
   },
 ]
@@ -89,12 +89,12 @@ const navigation = [
 const bottomNavigation = [
   {
     name: 'Paramètres',
-    href: '/settings',
+    href: '/app/settings',
     icon: Settings,
   },
   {
     name: 'Facturation',
-    href: '/billing',
+    href: '/app/billing',
     icon: CreditCard,
   },
 ]
@@ -118,12 +118,12 @@ export function Sidebar({ className }: SidebarProps) {
       {/* Header */}
       <div className="flex h-16 items-center justify-between px-4 border-b">
         {!collapsed && (
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Zap className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="font-bold text-lg">DropFlow Pro</span>
-          </div>
+          </Link>
         )}
         <Button
           variant="ghost"
