@@ -1,0 +1,1 @@
+// placeholder content for carrefour.ts

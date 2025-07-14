@@ -1,0 +1,9 @@
+.env
+node_modules/
+dist/
+.vscode/
+.DS_Store
+*.log
+*.zip
+*.patch
+supabase/.temp/

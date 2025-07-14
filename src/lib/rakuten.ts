@@ -1,0 +1,1 @@
+// placeholder content for rakuten.ts
