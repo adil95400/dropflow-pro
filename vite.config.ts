@@ -10,7 +10,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['react-dom']
+    exclude: []
   },
   server: {
     port: 3000,
