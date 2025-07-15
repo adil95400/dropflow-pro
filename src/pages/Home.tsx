@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight, Check, Star, Play, ChevronDown, Menu, X, Zap, Shield,
   Clock, Users, TrendingUp, Package, BarChart3, Globe, Mail, Phone,
-  MapPin, MessageCircle, ChevronRight, ChevronLeft, Plus
+  MapPin, MessageCircle, ChevronRight, ChevronLeft, Plus,
   Truck, Layers, Database, Target, Award, HeadphonesIcon, BookOpen, 
   FileText, Eye, EyeOff, Building2, Sparkles, Rocket, Crown, Gift,
   CheckCircle, AlertCircle, Info, Lightbulb, Megaphone, Calendar,
