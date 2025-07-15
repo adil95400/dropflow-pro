@@ -12,7 +12,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 25 95% 53%;
+    --primary: 25 95% 53%; /* Orange #F97316 */
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96%;
     --secondary-foreground: 222.2 84% 4.9%;
@@ -35,7 +35,7 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 25 95% 53%;
+    --primary: 25 95% 53%; /* Orange #F97316 */
     --primary-foreground: 222.2 84% 4.9%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -61,6 +61,22 @@
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-poppins font-semibold;
+  }
+
+  /* Custom animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Grid pattern */
+  .bg-grid-pattern {
+    background-image: radial-gradient(circle, #00000010 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 }
 
