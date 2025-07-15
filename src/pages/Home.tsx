@@ -2,36 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { useIntersection } from 'react-use'
-import { 
-  ArrowRight, 
-  Check, 
-  Star, 
-  Globe, 
-  Zap, 
-  Shield, 
-  TrendingUp, 
-  Package, 
-  Search, 
-  Sync, 
-  BarChart3, 
-  Users, 
-  Mail, 
-  Github, 
-  Twitter, 
-  Linkedin, 
-  ChevronLeft, 
-  ChevronRight, 
-  Play,
-  Target,
-  Rocket,
-  Award,
-  Clock,
-  DollarSign,
-  ShoppingCart,
-  Smartphone,
-  Monitor,
-  Tablet
-} from 'lucide-react'
+import { ArrowRight, Check, Star, Globe, Zap, Shield, TrendingUp, Package, Search, FolderSync as Sync, BarChart3, Users, Mail, Github, Twitter, Linkedin, ChevronLeft, ChevronRight, Play, Target, Rocket, Award, Clock, DollarSign, ShoppingCart, Smartphone, Monitor, Tablet } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
