@@ -9,6 +9,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  optimizeDeps: {
+    exclude: ['react', 'react-dom']
+  },
   server: {
     port: 3000,
     host: true,
