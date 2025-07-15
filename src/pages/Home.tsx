@@ -9,7 +9,7 @@ import {
   FileText, Eye, EyeOff, Building2, Sparkles, Rocket, Crown, Gift,
   CheckCircle, AlertCircle, Info, Lightbulb, Megaphone, Calendar,
   CreditCard, Lock, Wifi, Smartphone, Monitor, Tablet, Headphones,
-  Shield, ArrowRight, Play, Download, Upload, Search, Bot,
+ Play, Download, Upload, Search, Bot,
   Settings, UserCheck, Verified, BadgeCheck, Flame, Gauge, Infinity
 } from 'lucide-react'
 
