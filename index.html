@@ -7,46 +7,21 @@
     <title>DropFlow Pro - Plateforme Dropshipping IA</title>
     <meta name="description" content="La plateforme dropshipping la plus puissante pour automatiser votre e-commerce avec l'IA. Import produits, SEO automatique, tracking commandes." />
     
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dropflow.pro/" />
-    <meta property="og:title" content="DropFlow Pro - Plateforme Dropshipping IA" />
-    <meta property="og:description" content="Automatisez votre dropshipping avec l'IA. Import produits, SEO automatique, tracking commandes." />
-    <meta property="og:image" content="/og-image.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://dropflow.pro/" />
-    <meta property="twitter:title" content="DropFlow Pro - Plateforme Dropshipping IA" />
-    <meta property="twitter:description" content="Automatisez votre dropshipping avec l'IA. Import produits, SEO automatique, tracking commandes." />
-    <meta property="twitter:image" content="/og-image.png" />
-    
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Inter & Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Theme Color -->
-    <meta name="theme-color" content="#FF6A00" />
+    <meta name="theme-color" content="#F97316" />
     
     <!-- Prevent FOUC -->
     <style>
       html {
         background-color: #ffffff;
-      }
-      
-      @media (prefers-color-scheme: dark) {
-        html {
-          background-color: #111827;
-        }
+        font-family: 'Inter', sans-serif;
       }
       
       /* Loading spinner */
@@ -58,7 +33,7 @@
         width: 40px;
         height: 40px;
         border: 4px solid #f3f4f6;
-        border-top: 4px solid #FF6A00;
+        border-top: 4px solid #F97316;
         border-radius: 50%;
         animation: spin 1s linear infinite;
         z-index: 9999;
@@ -80,27 +55,6 @@
     
     <!-- Loading spinner shown while React loads -->
     <div class="loading-spinner"></div>
-    
-    <!-- Error fallback -->
-    <noscript>
-      <div style="
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        color: #374151;
-        max-width: 400px;
-        padding: 2rem;
-      ">
-        <h1 style="color: #FF6A00; margin-bottom: 1rem;">DropFlow Pro</h1>
-        <p>JavaScript doit être activé pour utiliser cette application.</p>
-        <p style="font-size: 0.875rem; color: #6B7280; margin-top: 1rem;">
-          Veuillez activer JavaScript dans votre navigateur et recharger la page.
-        </p>
-      </div>
-    </noscript>
     
     <script type="module" src="/src/main.tsx"></script>
   </body>

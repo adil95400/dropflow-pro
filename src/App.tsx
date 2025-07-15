@@ -72,19 +72,6 @@ function App() {
 
                 {/* Legacy redirects */}
                 <Route path="/dashboard" element={<Navigate to="/app/dashboard" replace />} />
-                <Route path="/import" element={<Navigate to="/app/import" replace />} />
-                <Route path="/products" element={<Navigate to="/app/products" replace />} />
-                <Route path="/tracking" element={<Navigate to="/app/tracking" replace />} />
-                <Route path="/winners" element={<Navigate to="/app/winners" replace />} />
-                <Route path="/seo" element={<Navigate to="/app/seo" replace />} />
-                <Route path="/blog" element={<Navigate to="/app/blog" replace />} />
-                <Route path="/crm" element={<Navigate to="/app/crm" replace />} />
-                <Route path="/marketplace" element={<Navigate to="/app/marketplace" replace />} />
-                <Route path="/reviews" element={<Navigate to="/app/reviews" replace />} />
-                <Route path="/marketing" element={<Navigate to="/app/marketing" replace />} />
-                <Route path="/analytics" element={<Navigate to="/app/analytics" replace />} />
-                <Route path="/settings" element={<Navigate to="/app/settings" replace />} />
-                <Route path="/billing" element={<Navigate to="/app/billing" replace />} />
               </Routes>
               <Toaster />
             </div>
