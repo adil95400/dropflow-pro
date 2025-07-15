@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { useIntersection } from 'react-use'
+import { useInView as useInViewObserver } from 'react-intersection-observer'
 import { ArrowRight, Check, Star, Globe, Zap, Shield, TrendingUp, Package, Search, FolderSync as Sync, BarChart3, Users, Mail, Github, Twitter, Linkedin, ChevronLeft, ChevronRight, Play, Target, Rocket, Award, Clock, DollarSign, ShoppingCart, Smartphone, Monitor, Tablet } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -37,7 +37,7 @@ const scaleIn = {
 // Animated Counter Component
 const AnimatedCounter = ({ end, duration = 2000, suffix = '' }: { end: number, duration?: number, suffix?: string }) => {
   const [count, setCount] = useState(0)
-  const [ref, inView] = useIntersection({
+  const [ref, inView] = useInViewObserver({
     threshold: 0.3,
   })
 
