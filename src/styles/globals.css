@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
     --primary: 25 95% 53%; /* Orange #F97316 */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -12,7 +13,6 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 25 95% 53%;
     --primary-foreground: 210 40% 98%;
     --orange: 25 95% 53%;
     --orange-dark: 25 95% 45%;
@@ -28,8 +28,6 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 25 95% 53%;
     --radius: 0.75rem;
-    --orange: 25 95% 53%;
-    --orange-dark: 25 95% 45%;
     --gray-50: 210 40% 98%;
     --gray-100: 210 40% 96%;
     --gray-200: 214.3 31.8% 91.4%;
@@ -63,9 +61,7 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 25 95% 53%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
