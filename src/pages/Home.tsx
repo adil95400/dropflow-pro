@@ -150,7 +150,10 @@ const FeatureShowcase = ({ features }: { features: any[] }) => {
           </div>
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <features[activeFeature].icon className="w-6 h-6 text-orange-500" />
+              {(() => {
+                const IconComponent = features[activeFeature].icon;
+                return <IconComponent className="w-6 h-6 text-orange-500" />;
+              })()}
               <span className="font-semibold">{features[activeFeature].title}</span>
             </div>
             <div className="bg-gray-800 rounded-lg p-4">
