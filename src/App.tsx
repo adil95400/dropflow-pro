@@ -5,14 +5,14 @@ import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/components/theme-provider'
 import { AuthProvider } from '@/contexts/auth-context'
 import { ProtectedRoute } from '@/components/protected-route'
-import { Layout } from '@/components/layout'
+import { ModernLayout } from '@/components/layout/modern-layout'
 
 // Import i18n
 import '@/lib/i18n'
 
 // Pages
 import { HomePage } from '@/pages/Home'
-import { LoginPage } from '@/pages/auth/login'
+import { ModernLoginPage } from '@/pages/auth/modern-login'
 import { RegisterPage } from '@/pages/auth/register'
 import { DashboardPage } from '@/pages/dashboard'
 import { ImportPage } from '@/pages/import'
@@ -48,11 +48,11 @@ function App() {
               <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={<HomePage />} />
-                <Route path="/login" element={<LoginPage />} />
+                <Route path="/login" element={<ModernLoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
                 
                 {/* Protected Routes */}
-                <Route path="/app" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+                <Route path="/app" element={<ProtectedRoute><ModernLayout /></ProtectedRoute>}>
                   <Route index element={<Navigate to="/app/dashboard" replace />} />
                   <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="import" element={<ImportPage />} />
