@@ -22,7 +22,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
+          vendor: ['react'],
           ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
           charts: ['recharts'],
           supabase: ['@supabase/supabase-js'],
