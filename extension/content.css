@@ -1,0 +1,207 @@
+/* DropFlow Pro Extension Styles */
+
+/* Import Button */
+#dropflow-import-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: #F97316;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+#dropflow-import-button:hover {
+  background-color: #EA580C;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#dropflow-import-button img {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
+
+/* Notification */
+#dropflow-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #3B82F6;
+  color: white;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  max-width: 400px;
+}
+
+#dropflow-notification.success {
+  background-color: #10B981;
+}
+
+#dropflow-notification.error {
+  background-color: #EF4444;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.notification-content img {
+  width: 20px;
+  height: 20px;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+/* Product Card */
+.dropflow-product-card {
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.dropflow-product-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropflow-product-header {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.dropflow-product-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.dropflow-product-details {
+  flex: 1;
+}
+
+.dropflow-product-title {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: #111827;
+}
+
+.dropflow-product-price {
+  font-weight: 600;
+  color: #F97316;
+}
+
+.dropflow-product-source {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+/* Animations */
+@keyframes dropflowSlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes dropflowSlideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Tooltip */
+.dropflow-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.dropflow-tooltip .dropflow-tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.dropflow-tooltip .dropflow-tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.dropflow-tooltip:hover .dropflow-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Loading Spinner */
+.dropflow-spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #F97316;
+  width: 20px;
+  height: 20px;
+  animation: dropflowSpin 1s linear infinite;
+}
+
+@keyframes dropflowSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
