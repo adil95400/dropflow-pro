@@ -19,37 +19,61 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
+      console.warn('Supabase not configured properly. Please check your environment variables.')
       setLoading(false)
       return
     }
 
-    // Get initial session
-    supabase.auth.getSession()
-      .then(({ data: { session } }) => {
+    // Get initial session with error handling
+    const getInitialSession = async () => {
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession()
+        if (error) {
+          console.warn('Session error:', error)
+        }
         setSession(session)
         setUser(session?.user ?? null)
-        setLoading(false)
-      })
-      .catch((error) => {
+      } catch (error) {
         console.warn('Failed to get session:', error)
+        // Don't throw, just set to null state
+        setSession(null)
+        setUser(null)
+      } finally {
         setLoading(false)
-      })
+      }
+    }
 
-    // Listen for auth changes
+    getInitialSession()
+
+    // Listen for auth changes with error handling
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-      setUser(session?.user ?? null)
-      setLoading(false)
+      try {
+        setSession(session)
+        setUser(session?.user ?? null)
+        setLoading(false)
+      } catch (error) {
+        console.warn('Auth state change error:', error)
+        setSession(null)
+        setUser(null)
+        setLoading(false)
+      }
     })
 
     return () => subscription.unsubscribe()
   }, [])
 
   const signOut = async () => {
-    if (isSupabaseConfigured) {
-      await supabase.auth.signOut()
+    try {
+      if (isSupabaseConfigured) {
+        await supabase.auth.signOut()
+      }
+    } catch (error) {
+      console.warn('Sign out error:', error)
+      // Force local sign out even if remote fails
+      setSession(null)
+      setUser(null)
     }
   }
 
