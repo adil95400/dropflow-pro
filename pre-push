@@ -1,0 +1,55 @@
+#!/bin/bash
+# DropFlow Pro - Pre-push Hook
+# This script runs before each push to ensure code quality
+
+# Exit on error
+set -e
+
+echo "🚀 DropFlow Pre-push Hook"
+echo "------------------------"
+
+# Get the current branch
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+echo "📂 Current branch: $CURRENT_BRANCH"
+
+# Don't run on main/master branches
+if [[ "$CURRENT_BRANCH" == "main" || "$CURRENT_BRANCH" == "master" ]]; then
+    echo "⚠️ Pushing to $CURRENT_BRANCH branch. Running additional checks..."
+fi
+
+# Run full test suite
+echo "🧪 Running full test suite..."
+npm run test || {
+    echo "❌ Tests failed. Please fix the failing tests before pushing."
+    exit 1
+}
+
+# Run build to ensure it compiles
+echo "🔨 Building project..."
+npm run build || {
+    echo "❌ Build failed. Please fix the build errors before pushing."
+    exit 1
+}
+
+# Run type checking
+echo "🔎 Running TypeScript type checking..."
+npm run type-check || {
+    echo "❌ TypeScript check failed. Please fix the type errors before pushing."
+    exit 1
+}
+
+# Run linting
+echo "🧹 Running linting..."
+npm run lint || {
+    echo "❌ Linting failed. Please fix the linting errors before pushing."
+    exit 1
+}
+
+# Run security audit
+echo "🔒 Running security audit..."
+npm audit --production || {
+    echo "⚠️ Security vulnerabilities found. Consider fixing them."
+    # Don't exit with error, just warn
+}
+
+echo "✅ Pre-push checks passed!"

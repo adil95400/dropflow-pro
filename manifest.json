@@ -1,0 +1,75 @@
+{
+  "manifest_version": 3,
+  "name": "DropFlow Pro",
+  "version": "2.0.0",
+  "description": "Extension officielle DropFlow Pro pour l'import de produits et le tracking de commandes",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "DropFlow Pro"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "scripting",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://*.aliexpress.com/*",
+    "https://*.bigbuy.eu/*",
+    "https://*.shopify.com/*",
+    "https://*.amazon.com/*",
+    "https://*.amazon.fr/*",
+    "https://*.cdiscount.com/*",
+    "https://app.dropflow.pro/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.aliexpress.com/item/*",
+        "https://*.bigbuy.eu/*/product/*",
+        "https://*.amazon.com/*/dp/*",
+        "https://*.amazon.fr/*/dp/*",
+        "https://*.cdiscount.com/*/f-*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*", "images/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "commands": {
+    "import-product": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+I",
+        "mac": "Command+Shift+I"
+      },
+      "description": "Importer le produit actuel"
+    },
+    "open-dashboard": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D",
+        "mac": "Command+Shift+D"
+      },
+      "description": "Ouvrir le dashboard DropFlow Pro"
+    }
+  }
+}
