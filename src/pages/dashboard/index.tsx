@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
   BarChart,
   Bar,
@@ -16,6 +17,8 @@ import {
   PieChart,
   Pie,
   Cell,
+  AreaChart,
+  Area
 } from 'recharts'
 import {
   Package,
@@ -26,145 +29,266 @@ import {
   Eye,
   Star,
   Zap,
+  ArrowUp,
+  ArrowDown,
+  Clock,
+  Globe,
+  Target,
+  Truck,
+  AlertTriangle
 } from 'lucide-react'
+import { mockAnalytics, mockProducts, mockOrders } from '@/lib/mock-data'
 
 const stats = [
   {
-    title: 'Produits Importés',
-    value: '2,847',
-    change: '+12%',
-    icon: Package,
-    color: 'text-blue-600',
-  },
-  {
-    title: 'Commandes Trackées',
-    value: '1,234',
-    change: '+8%',
-    icon: TrendingUp,
-    color: 'text-green-600',
-  },
-  {
-    title: 'Revenus Générés',
-    value: '€45,231',
-    change: '+23%',
+    title: 'Revenus Total',
+    value: '€245,679',
+    change: '+23.5%',
+    changeType: 'positive',
     icon: DollarSign,
-    color: 'text-yellow-600',
+    color: 'text-green-600',
+    bgColor: 'bg-green-50'
   },
   {
-    title: 'Clients Actifs',
-    value: '892',
-    change: '+5%',
-    icon: Users,
-    color: 'text-purple-600',
+    title: 'Commandes',
+    value: '3,456',
+    change: '+12.3%',
+    changeType: 'positive',
+    icon: ShoppingCart,
+    color: 'text-blue-600',
+    bgColor: 'bg-blue-50'
   },
+  {
+    title: 'Produits Actifs',
+    value: '1,234',
+    change: '+8.7%',
+    changeType: 'positive',
+    icon: Package,
+    color: 'text-purple-600',
+    bgColor: 'bg-purple-50'
+  },
+  {
+    title: 'Taux Conversion',
+    value: '3.2%',
+    change: '-0.5%',
+    changeType: 'negative',
+    icon: Target,
+    color: 'text-orange-600',
+    bgColor: 'bg-orange-50'
+  }
 ]
 
 const salesData = [
-  { name: 'Jan', sales: 4000, orders: 240 },
-  { name: 'Fév', sales: 3000, orders: 139 },
-  { name: 'Mar', sales: 2000, orders: 980 },
-  { name: 'Avr', sales: 2780, orders: 390 },
-  { name: 'Mai', sales: 1890, orders: 480 },
-  { name: 'Jun', sales: 2390, orders: 380 },
+  { name: 'Jan', revenue: 18500, orders: 245, profit: 8500 },
+  { name: 'Fév', revenue: 22300, orders: 298, profit: 11200 },
+  { name: 'Mar', revenue: 19800, orders: 267, profit: 9400 },
+  { name: 'Avr', revenue: 25600, orders: 342, profit: 13800 },
+  { name: 'Mai', revenue: 28900, orders: 389, profit: 16200 },
+  { name: 'Jun', revenue: 32400, orders: 435, profit: 19800 }
 ]
 
 const topProducts = [
-  { name: 'Montre Connectée', sales: 1234, revenue: '€12,340' },
-  { name: 'Écouteurs Bluetooth', sales: 987, revenue: '€9,870' },
-  { name: 'Coque iPhone', sales: 756, revenue: '€7,560' },
-  { name: 'Chargeur Sans Fil', sales: 543, revenue: '€5,430' },
+  { name: 'Montre Connectée Sport Pro Max', sales: 1247, revenue: 112023.53, margin: 98.5 },
+  { name: 'Écouteurs Bluetooth Premium ANC', sales: 892, revenue: 71351.08, margin: 146.1 },
+  { name: 'Coque iPhone 15 Pro Transparente', sales: 2156, revenue: 53874.44, margin: 185.6 },
+  { name: 'Chargeur Sans Fil Rapide 15W', sales: 743, revenue: 25992.57, margin: 184.5 },
+  { name: 'Lampe LED Bureau Pliable', sales: 456, revenue: 22795.44, margin: 164.5 }
 ]
 
 const recentActivity = [
-  { action: 'Nouveau produit importé', product: 'Montre Sport', time: '2 min' },
-  { action: 'Commande trackée', product: 'Écouteurs Pro', time: '5 min' },
-  { action: 'Review générée', product: 'Coque Premium', time: '10 min' },
-  { action: 'SEO optimisé', product: 'Chargeur Rapide', time: '15 min' },
+  { 
+    action: 'Nouveau produit importé', 
+    product: 'Montre Sport Elite', 
+    time: '2 min',
+    type: 'import',
+    icon: Package
+  },
+  { 
+    action: 'Commande trackée', 
+    product: 'Écouteurs Pro Max', 
+    time: '5 min',
+    type: 'order',
+    icon: Truck
+  },
+  { 
+    action: 'SEO optimisé', 
+    product: 'Coque Premium iPhone', 
+    time: '10 min',
+    type: 'seo',
+    icon: Zap
+  },
+  { 
+    action: 'Review générée', 
+    product: 'Chargeur Rapide', 
+    time: '15 min',
+    type: 'review',
+    icon: Star
+  },
+  { 
+    action: 'Stock faible détecté', 
+    product: 'Lampe LED Bureau', 
+    time: '1h',
+    type: 'alert',
+    icon: AlertTriangle
+  }
 ]
 
+const supplierPerformance = [
+  { name: 'AliExpress', orders: 1247, rating: 4.8, onTime: 94 },
+  { name: 'BigBuy', orders: 892, rating: 4.9, onTime: 98 },
+  { name: 'Eprolo', orders: 743, rating: 4.6, onTime: 92 },
+  { name: 'Printify', orders: 456, rating: 4.7, onTime: 95 },
+  { name: 'Spocket', orders: 234, rating: 4.5, onTime: 90 }
+]
+
+const COLORS = ['#F97316', '#3B82F6', '#10B981', '#8B5CF6', '#F59E0B']
+
 export function DashboardPage() {
+  const [timeRange, setTimeRange] = useState('7d')
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-gray-600">
             Vue d'ensemble de votre activité dropshipping
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline">
+          <Button variant="outline" size="sm">
             <Eye className="w-4 h-4 mr-2" />
-            Voir Rapport
+            Rapport Complet
           </Button>
-          <Button>
+          <Button className="bg-gradient-to-r from-orange-500 to-orange-600">
             <Zap className="w-4 h-4 mr-2" />
             Importer Produits
           </Button>
         </div>
       </div>
 
+      {/* Time Range Selector */}
+      <div className="flex gap-2">
+        {['24h', '7d', '30d', '90d'].map((range) => (
+          <Button
+            key={range}
+            variant={timeRange === range ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setTimeRange(range)}
+          >
+            {range}
+          </Button>
+        ))}
+      </div>
+
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat) => (
-          <Card key={stat.title} className="card-hover">
+        {stats.map((stat, index) => (
+          <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-              <stat.icon className={`w-4 h-4 ${stat.color}`} />
+              <CardTitle className="text-sm font-medium text-gray-600">
+                {stat.title}
+              </CardTitle>
+              <div className={`w-10 h-10 rounded-xl ${stat.bgColor} flex items-center justify-center`}>
+                <stat.icon className={`w-5 h-5 ${stat.color}`} />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-muted-foreground">
-                <span className="text-green-600">{stat.change}</span> vs mois dernier
-              </p>
+              <div className="text-2xl font-bold text-gray-900 mb-1">
+                {stat.value}
+              </div>
+              <div className="flex items-center text-sm">
+                {stat.changeType === 'positive' ? (
+                  <ArrowUp className="w-4 h-4 text-green-500 mr-1" />
+                ) : (
+                  <ArrowDown className="w-4 h-4 text-red-500 mr-1" />
+                )}
+                <span className={stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}>
+                  {stat.change}
+                </span>
+                <span className="text-gray-500 ml-1">vs mois dernier</span>
+              </div>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      {/* Charts */}
+      {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Revenue Chart */}
         <Card>
           <CardHeader>
-            <CardTitle>Évolution des Ventes</CardTitle>
-            <CardDescription>Revenus et commandes des 6 derniers mois</CardDescription>
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-green-600" />
+              Évolution des Revenus
+            </CardTitle>
+            <CardDescription>
+              Revenus et commandes des 6 derniers mois
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={salesData}>
+              <AreaChart data={salesData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis />
-                <Tooltip />
-                <Bar dataKey="sales" fill="#3b82f6" />
-                <Bar dataKey="orders" fill="#10b981" />
-              </BarChart>
+                <Tooltip 
+                  formatter={(value, name) => [
+                    name === 'revenue' ? `€${value.toLocaleString()}` : value,
+                    name === 'revenue' ? 'Revenus' : 'Commandes'
+                  ]}
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="revenue" 
+                  stroke="#F97316" 
+                  fill="#F97316" 
+                  fillOpacity={0.1}
+                />
+                <Area 
+                  type="monotone" 
+                  dataKey="orders" 
+                  stroke="#3B82F6" 
+                  fill="#3B82F6" 
+                  fillOpacity={0.1}
+                />
+              </AreaChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
 
+        {/* Top Products */}
         <Card>
           <CardHeader>
-            <CardTitle>Produits Top Ventes</CardTitle>
-            <CardDescription>Vos produits les plus performants</CardDescription>
+            <CardTitle className="flex items-center gap-2">
+              <Star className="w-5 h-5 text-yellow-600" />
+              Top Produits
+            </CardTitle>
+            <CardDescription>
+              Vos produits les plus performants
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {topProducts.map((product, index) => (
-                <div key={product.name} className="flex items-center justify-between">
+              {topProducts.slice(0, 5).map((product, index) => (
+                <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <span className="text-sm font-medium">#{index + 1}</span>
+                    <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white font-semibold text-sm">
+                      #{index + 1}
                     </div>
-                    <div>
-                      <p className="font-medium">{product.name}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {product.sales} ventes
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-gray-900 truncate">
+                        {product.name}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {product.sales} ventes • Marge {product.margin}%
                       </p>
                     </div>
                   </div>
-                  <Badge variant="secondary">{product.revenue}</Badge>
+                  <Badge variant="secondary" className="bg-green-100 text-green-800">
+                    €{product.revenue.toLocaleString()}
+                  </Badge>
                 </div>
               ))}
             </div>
@@ -172,57 +296,181 @@ export function DashboardPage() {
         </Card>
       </div>
 
-      {/* Recent Activity & Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Detailed Analytics */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Recent Activity */}
         <Card>
           <CardHeader>
-            <CardTitle>Activité Récente</CardTitle>
-            <CardDescription>Dernières actions sur votre compte</CardDescription>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="w-5 h-5 text-blue-600" />
+              Activité Récente
+            </CardTitle>
+            <CardDescription>
+              Dernières actions sur votre compte
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {recentActivity.map((activity, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">{activity.action}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {activity.product} • il y a {activity.time}
+                <div key={index} className="flex items-start gap-3">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    activity.type === 'import' ? 'bg-blue-100 text-blue-600' :
+                    activity.type === 'order' ? 'bg-green-100 text-green-600' :
+                    activity.type === 'seo' ? 'bg-orange-100 text-orange-600' :
+                    activity.type === 'review' ? 'bg-yellow-100 text-yellow-600' :
+                    'bg-red-100 text-red-600'
+                  }`}>
+                    <activity.icon className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900">
+                      {activity.action}
+                    </p>
+                    <p className="text-sm text-gray-500 truncate">
+                      {activity.product}
                     </p>
                   </div>
+                  <span className="text-xs text-gray-400">
+                    {activity.time}
+                  </span>
                 </div>
               ))}
             </div>
           </CardContent>
         </Card>
 
+        {/* Supplier Performance */}
         <Card>
           <CardHeader>
-            <CardTitle>Actions Rapides</CardTitle>
-            <CardDescription>Raccourcis vers vos fonctionnalités principales</CardDescription>
+            <CardTitle className="flex items-center gap-2">
+              <Truck className="w-5 h-5 text-purple-600" />
+              Performance Fournisseurs
+            </CardTitle>
+            <CardDescription>
+              Évaluation de vos fournisseurs
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {supplierPerformance.map((supplier, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-gray-900">
+                      {supplier.name}
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <span className="text-sm text-gray-600">
+                        {supplier.rating}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-gray-600">
+                    <span>{supplier.orders} commandes</span>
+                    <span>{supplier.onTime}% à temps</span>
+                  </div>
+                  <Progress value={supplier.onTime} className="h-2" />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Quick Actions */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="w-5 h-5 text-orange-600" />
+              Actions Rapides
+            </CardTitle>
+            <CardDescription>
+              Raccourcis vers vos fonctionnalités principales
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-3">
-              <Button variant="outline" className="h-20 flex-col gap-2">
-                <Package className="w-6 h-6" />
-                <span className="text-sm">Importer</span>
+              <Button variant="outline" className="h-20 flex-col gap-2 hover:bg-blue-50">
+                <Package className="w-6 h-6 text-blue-600" />
+                <span className="text-sm font-medium">Importer</span>
               </Button>
-              <Button variant="outline" className="h-20 flex-col gap-2">
-                <TrendingUp className="w-6 h-6" />
-                <span className="text-sm">Tracker</span>
+              <Button variant="outline" className="h-20 flex-col gap-2 hover:bg-green-50">
+                <TrendingUp className="w-6 h-6 text-green-600" />
+                <span className="text-sm font-medium">Tracker</span>
               </Button>
-              <Button variant="outline" className="h-20 flex-col gap-2">
-                <Star className="w-6 h-6" />
-                <span className="text-sm">Winners</span>
+              <Button variant="outline" className="h-20 flex-col gap-2 hover:bg-yellow-50">
+                <Star className="w-6 h-6 text-yellow-600" />
+                <span className="text-sm font-medium">Winners</span>
               </Button>
-              <Button variant="outline" className="h-20 flex-col gap-2">
-                <Zap className="w-6 h-6" />
-                <span className="text-sm">SEO IA</span>
+              <Button variant="outline" className="h-20 flex-col gap-2 hover:bg-orange-50">
+                <Zap className="w-6 h-6 text-orange-600" />
+                <span className="text-sm font-medium">SEO IA</span>
               </Button>
             </div>
           </CardContent>
         </Card>
       </div>
+
+      {/* Performance Overview */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Globe className="w-5 h-5 text-indigo-600" />
+            Vue d'Ensemble Performance
+          </CardTitle>
+          <CardDescription>
+            Métriques détaillées de votre activité
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
+              <TabsTrigger value="products">Produits</TabsTrigger>
+              <TabsTrigger value="orders">Commandes</TabsTrigger>
+              <TabsTrigger value="customers">Clients</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="overview" className="space-y-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">€71.05</div>
+                  <div className="text-sm text-gray-600">Panier Moyen</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">23.5%</div>
+                  <div className="text-sm text-gray-600">Croissance</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">4.2</div>
+                  <div className="text-sm text-gray-600">Note Moyenne</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">94%</div>
+                  <div className="text-sm text-gray-600">Satisfaction</div>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="products">
+              <div className="text-center py-8 text-gray-500">
+                Statistiques produits détaillées disponibles dans la section Produits
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="orders">
+              <div className="text-center py-8 text-gray-500">
+                Analyse des commandes disponible dans la section Tracking
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="customers">
+              <div className="text-center py-8 text-gray-500">
+                Données clients disponibles dans la section CRM
+              </div>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
     </div>
   )
 }
