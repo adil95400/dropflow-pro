@@ -1,39 +1,11 @@
-import React from 'react';
-import { ProductInfo, formatPrice, getSourceDisplayName, getSourceIcon } from '../utils/productExtractor';
 
-interface ProductCardProps {
-  product: ProductInfo;
-  onClick?: () => void;
-}
+import React from "react"
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
+export default function ProductCard() {
   return (
-    <div className="product-card" onClick={onClick}>
-      <div className="flex">
-        {product.images && product.images.length > 0 ? (
-          <img
-            src={product.images[0]}
-            alt={product.title}
-            className="product-image"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = 'icons/image-placeholder.png';
-            }}
-          />
-        ) : (
-          <div className="product-image-placeholder">
-            <span>No Image</span>
-          </div>
-        )}
-        <div className="product-details">
-          <p className="product-title">{product.title}</p>
-          <p className="product-price">{formatPrice(product.price)}</p>
-          <p className="product-supplier">
-            {getSourceIcon(product.source)} {getSourceDisplayName(product.source)}
-          </p>
-        </div>
-      </div>
+    <div className="p-6 text-center">
+      <h1 className="text-2xl font-bold">Page ProductCard</h1>
+      <p className="text-muted-foreground mt-2">Cette page est maintenant active et prête à être personnalisée.</p>
     </div>
-  );
-};
-
-export default ProductCard;
+  )
+}
