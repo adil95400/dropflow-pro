@@ -1,7 +1,7 @@
 
 import React from "react"
 
-export default function Blog() {
+export function Blog() {
   return (
     <div className="p-6 text-center">
       <h1 className="text-2xl font-bold">Page Blog</h1>

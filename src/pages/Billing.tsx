@@ -1,7 +1,7 @@
 
 import React from "react"
 
-export default function Billing() {
+export function Billing() {
   return (
     <div className="p-6 text-center">
       <h1 className="text-2xl font-bold">Page Billing</h1>
