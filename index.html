@@ -1,61 +1,125 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth" data-theme="system">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DropFlow Pro - Plateforme Dropshipping IA</title>
-    <meta name="description" content="La plateforme dropshipping la plus puissante pour automatiser votre e-commerce avec l'IA. Import produits, SEO automatique, tracking commandes." />
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Fonts - Inter & Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#F97316" />
-    
-    <!-- Prevent FOUC -->
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- SEO -->
+    <title>DropFlow – Dropshipping IA, Shopify, Extension & App</title>
+    <meta name="description" content="DropFlow est une plateforme de dropshipping IA complète avec import produit, SEO, CRM, extension Chrome et app mobile." />
+    <link rel="canonical" href="https://dropflow.app/" />
+
+    <!-- OG -->
+    <meta property="og:title" content="DropFlow – Dropshipping Intelligent" />
+    <meta property="og:description" content="Automatisez votre business e-commerce avec DropFlow." />
+    <meta property="og:image" content="/preview.png" />
+    <meta property="og:url" content="https://dropflow.app/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DropFlow – Dropshipping intelligent" />
+    <meta name="twitter:description" content="Trouvez des produits gagnants et automatisez vos ventes." />
+    <meta name="twitter:image" content="/preview.png" />
+
+    <!-- App Icons / PWA -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Splash animation (lightweight SVG) -->
     <style>
-      html {
-        background-color: #ffffff;
+      #splash {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: #0f172a;
+        color: white;
         font-family: 'Inter', sans-serif;
       }
-      
-      /* Loading spinner */
-      .loading-spinner {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border: 4px solid #f3f4f6;
-        border-top: 4px solid #F97316;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        z-index: 9999;
+
+      #splash svg {
+        width: 120px;
+        height: 120px;
+        animation: rotate 2s linear infinite;
       }
-      
-      @keyframes spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-      }
-      
-      /* Hide loading spinner when app loads */
-      #root:not(:empty) + .loading-spinner {
-        display: none;
+
+      @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
     </style>
+
+    <!-- Scripts -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <script type="module" crossorigin src="/src/main.tsx" defer></script>
+
+    <!-- Analytics (optional - uncomment if used) -->
+    <!-- Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX');
+    </script> -->
+
+    <!-- Segment -->
+    <!-- <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src="https://cdn.segment.com/analytics.js/v1/" + t + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="4.13.2";}}();
+    </script> -->
+
+    <!-- Hotjar -->
+    <!-- <script>
+      (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:1234567,hjsv:6};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script> -->
   </head>
-  <body>
-    <div id="root"></div>
-    
-    <!-- Loading spinner shown while React loads -->
-    <div class="loading-spinner"></div>
-    
-    <script type="module" src="/src/main.tsx"></script>
+
+  <body
+    class="bg-background text-foreground font-sans antialiased min-h-screen"
+    style="font-family: 'Inter', sans-serif"
+  >
+    <!-- Splash screen -->
+    <div id="splash">
+      <svg viewBox="0 0 50 50">
+        <circle cx="25" cy="25" r="20" fill="none" stroke="#22d3ee" stroke-width="4" />
+      </svg>
+    </div>
+
+    <noscript>
+      <strong>JavaScript est requis pour utiliser DropFlow.</strong>
+    </noscript>
+
+    <!-- App mount point -->
+    <div id="root" role="main" aria-label="Application DropFlow"></div>
+
+    <script>
+      // Supprime splash après chargement React
+      window.addEventListener('DOMContentLoaded', () => {
+        const splash = document.getElementById('splash');
+        if (splash) splash.remove();
+      });
+    </script>
   </body>
 </html>

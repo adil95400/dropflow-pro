@@ -1,7 +1,7 @@
 
 import React from "react"
 
-export default function register() {
+export function register() {
   return (
     <div className="p-6 text-center">
       <h1 className="text-2xl font-bold">Page register</h1>
