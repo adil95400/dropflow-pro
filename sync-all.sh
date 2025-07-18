@@ -29,7 +29,7 @@ echo "🚀 Push vers GitHub..."
 git push -u origin "$BRANCH"
 
 echo "🧠 Lancement du script Codex/Bolt (si connecté)..."
-node scripts/codexsync.js $MODULE
+node scripts/codexsync.cjs $MODULE
 
 echo "✅ Synchronisation complète avec GitHub + Codex terminée."
 
