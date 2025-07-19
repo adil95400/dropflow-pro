@@ -1,8 +1,10 @@
+
 # 🚀 DropFlow Pro - Plateforme SaaS Dropshipping
 
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/dropflow-pro/dropflow-pro)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/dropflow-pro/dropflow-pro/actions)
+[![Vercel Status](https://vercel.com/api/ping/adil95400/dropflow-pro)](https://vercel.com/adil95400/dropflow-pro)
 
 **DropFlow Pro** est une plateforme SaaS complète pour le dropshipping, conçue pour rivaliser avec Spocket, AutoDS, Zendrop et Channable. Elle offre des fonctionnalités avancées d'importation, d'optimisation IA, de tracking et de gestion multi-marketplace.
 
@@ -240,3 +242,4 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 **Développé avec ❤️ par l'équipe DropFlow Pro**
 
 [🌐 Site Web](https://dropflow.pro) • [📚 Documentation](https://docs.dropflow.pro) • [💬 Discord](https://discord.gg/dropflow)
+
