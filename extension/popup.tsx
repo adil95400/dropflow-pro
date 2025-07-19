@@ -17,7 +17,7 @@ interface ImportState {
   success: boolean;
 }
 
-const Popup: React.FC = () => {
+export const Popup: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('import');
   const [auth, setAuth] = useState<AuthState>({
     isAuthenticated: false,
@@ -350,6 +350,3 @@ const Popup: React.FC = () => {
     </div>
   );
 };
-
-// Render the popup
-ReactDOM.render(<Popup />, document.getElementById('root'));
