@@ -1,9 +1,15 @@
-# 🚀 DropFlow Pro – Plateforme SaaS de Dropshipping Intelligent
+
+# 🚀 DropFlow Pro - Plateforme SaaS Dropshipping
+
 
 [![Vercel Preview](https://img.shields.io/badge/preview-ready-brightgreen)](https://dropflow.vercel.app)
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/adil95400/dropflow-pro)
 [![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/adil95400/dropflow-pro/actions)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/dropflow-pro/dropflow-pro/actions)
+[![Vercel Status](https://vercel.com/api/ping/adil95400/dropflow-pro)](https://vercel.com/adil95400/dropflow-pro)
+
 
 **DropFlow Pro** est une plateforme SaaS complète pour le dropshipping, rivalisant avec Spocket, AutoDS et Zendrop. Elle centralise l'importation produit, l'optimisation IA, le tracking colis, le CRM, le SEO et les intégrations e-commerce.
 
@@ -141,6 +147,7 @@ flutter run
 
 ## 📞 Support
 
+
 - 📧 support@dropflow.pro
 - 📚 [Documentation API](https://docs.dropflow.pro)
 - 💬 [Discord communauté](https://discord.gg/dropflow)
@@ -155,3 +162,6 @@ MIT – Libre d'utilisation et d'amélioration. Respecte la propriété intellec
 ---
 
 **Développé avec ❤️ par DropFlow Pro Team**
+[🌐 Site Web](https://dropflow.pro) • [📚 Documentation](https://docs.dropflow.pro) • [💬 Discord](https://discord.gg/dropflow)
+
+
